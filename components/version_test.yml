@@ -1,0 +1,9 @@
+parameters:
+- name: filename
+  type: string
+- name: version
+  type: string
+
+steps:
+- bash: |
+    echo ${{ parameters.filename }}_${{ parameters.version }}
