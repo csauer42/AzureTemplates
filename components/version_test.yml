@@ -7,3 +7,5 @@ parameters:
 steps:
 - bash: |
     echo ${{ parameters.filename }}_${{ parameters.version }}
+- pwsh: |
+    echo "Pwsh test"
