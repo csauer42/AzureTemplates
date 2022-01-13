@@ -9,9 +9,9 @@ steps:
     echo ${{ parameters.filename }}_${{ parameters.version }}
 - pwsh: |
     echo "Pwsh test"
-- ${{ if eq(parameters.filename, 'package-name') }}:
+${{ if eq(parameters.filename, 'package-name') }}:
   - pwsh: |
       echo "Filename is package-name"
-  ${{ else }}:
+${{ else }}:
   - pwsh: |
       echo "Filename is something else: ${{ parameters.filename }}"
