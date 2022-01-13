@@ -11,8 +11,11 @@ steps:
 - ${{ if eq(parameters.filename, 'package-name') }}:
   - pwsh: |
       $PackageFile = "$(Agent.TempDirectory)/${{ parameters.filename }}/this_one_${{ parameters.filename }}_${{ parameters.version }}.tar.gz"
+      Write-Host "##vso[task.setvariable=local.filename;]$PackageFile"
 - ${{ else }}:
   - pwsh: |
       $PackageFile = "$(Agent.TempDirectory)/${{ parameters.filename }}/that_one_${{ parameters.filename }}_${{ parameters.version }}.tar.gz"
+      Write-Host "##vso[task.setvariable=local.filename;]$PackageFile"
 - pwsh: |
-    echo $PackageFile
+    echo "This is the output part"
+    echo $(local.filename)
