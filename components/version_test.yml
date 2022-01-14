@@ -19,12 +19,11 @@ steps:
 #       Write-Host "##vso[task.setvariable variable=local.filename;]$PackageFile"
 #     displayName: Set output filename
 - pwsh: |
-    if (${{ parameters.filename -eq 'package-name' }})
-    {
-      $PackageFile = "$(Agent.TempDirectory)/${{ parameters.filename }}/this_one_${{ parameters.filename }}_${{ parameters.version }}.tar.gz"
+    $PackageFile = if (${{ parameters.filename }} -eq 'package-name' ) {
+      "$(Agent.TempDirectory)/${{ parameters.filename }}/this_one_${{ parameters.filename }}_${{ parameters.version }}.tar.gz"
     } else {
-      $PackageFile = "$(Agent.TempDirectory)/${{ parameters.filename }}/that_one_${{ parameters.filename }}_${{ parameters.version }}.tar.gz"
+      "$(Agent.TempDirectory)/${{ parameters.filename }}/that_one_${{ parameters.filename }}_${{ parameters.version }}.tar.gz"
     }
     echo "This is the output part"
-    echo $(local.filename)
+    echo $PackageFile
   displayName: Use output filename
